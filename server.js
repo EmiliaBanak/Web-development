@@ -25,3 +25,9 @@ app.get("/venues", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+// importing venues route
+//const venueRoutes = require("WebDev/backend/routes/venues");
+
+// REST API route
+//app.use("/api", venueRoutes);
+//Venues
