@@ -3,6 +3,16 @@ if (!localStorage.getItem("visited")) {
   localStorage.setItem("visited", "yes");
 }
 
+let venues = [];
+
+fetch("http://localhost:3000/venues")
+  .then((response) => response.json())
+  .then((data) => {
+    venues = data;
+    renderVenues();
+  })
+  .catch((error) => console.log("Error:", error));
+
 /*fetch("http://localhost:3000/venues")
   .then((response) => {
     if (!response.ok) {
@@ -21,24 +31,6 @@ if (!localStorage.getItem("visited")) {
     });
   });
   */
-
-let venues = [
-  {
-    name: "Åhlens",
-    url: "ahlens.se/varuhus/jonkoping?utm_source=google&utm_medium=organic&utm_campaign=business_profile&utm_content=website_link",
-    district: "Öster",
-  },
-  {
-    name: "Gant",
-    url: "gant.se/stores?lat=57.78261370000001&long=14.1617876&postalCode=j%C3%B6nk%C3%B6ping&radius=10.0",
-    district: "Atollen",
-  },
-  {
-    name: "Dinos kemtvätt",
-    url: "dinos.nu",
-    district: "Väster",
-  },
-];
 
 //Render venues
 function renderVenues(list = venues) {
