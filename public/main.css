@@ -1,15 +1,15 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Body styling */
 body {
-    font-family: "acumin-pro", sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
-     background-image:
+  font-family: "acumin-pro", sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  background-image:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("/Web-development-main/WebDev/images/JNKPG.webp");
   background-size: cover;
@@ -18,59 +18,66 @@ body {
   background-attachment: fixed;
 }
 
-h1{
-    size: 100px;
-    text-align: left;
-    padding-left: 30px;
-    padding-top: 10px;
+h1 {
+  size: 100px;
+  text-align: left;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+h3 {
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 2%;
+  margin-top: 4%;
 }
 /* Header */
 header {
-    background-color: #000000;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
+  background-color: #000000;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
 }
 
 /* Navigation */
 nav ul {
-    list-style: none;
-    margin-top: 15px;
+  list-style: none;
+  margin-top: 15px;
 }
 
 nav ul li {
-    display: inline-block;
-    margin: 0 15px;
+  display: inline-block;
+  margin: 0 15px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: 0.3s;
-    text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+  text-transform: uppercase;
 }
 
 nav ul li a:hover {
-    color: #ffae00;
+  color: #ffae00;
 }
-h2{
-    text-align: center;
-    text-transform: uppercase;
-    color: white;
-    margin-bottom: 2%;
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 2%;
+}
 
+p {
+  margin-top: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+  text-align: center;
+  size: 30px;
+  color: white;
 }
-p{
-    margin-top: 10px;
-    margin-left: 30px;
-    margin-right: 30px;
-    text-align: center;
-    size: 30px;
-    color: white;
-}
-.welcome{
-    margin-top: 4%;
+.welcome {
+  margin-top: 4%;
 }
 /*tiles layer*/
 .tiles {
@@ -81,47 +88,132 @@ p{
 }
 
 .tile {
-  background:#ffffff;
-  aspect-ratio: 1 / 1; 
+  background: #ffffff;
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   text-align: center;
-border: 2px solid #000000; 
-size: 40px;
-text-transform: uppercase;
- 
+  border: 2px solid #000000;
+  size: 40px;
+  text-transform: uppercase;
 }
 .tile:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0,);
+  box-shadow: 0 6px 12px rgba(0, 0, 0);
 }
 .block {
-  background-color: black; 
-  color: white;           
-  padding: 30px 20px;         
-  max-width: 100%;       
-  margin: 20px auto;       
-  text-align: center;      
+  background-color: black;
+  color: white;
+  padding: 30px 20px;
+  max-width: 100%;
+  margin: 20px auto;
+  text-align: center;
 }
 .socials {
-  background-color: rgb(7, 7, 7); 
-  color: white;           
-  padding: 30px 20px;         
-  max-width: 100%;       
-  margin: 20px auto;       
-  text-align: center;      
+  background-color: rgb(7, 7, 7);
+  color: white;
+  padding: 30px 20px;
+  max-width: 100%;
+  margin: 20px auto;
+  text-align: center;
 }
+
+/* Venue section */
+#sorting {
+  margin-left: 8%;
+  text-align: left;
+}
+
+#addVenue {
+  text-align: left;
+  margin-left: 8%;
+}
+
+#venueList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 50px;
+  margin: 5%;
+  gap: 30px;
+}
+
+#venueList li {
+  color: #000000;
+  padding: 0;
+  background: #dcd0ba;
+  list-style: none;
+}
+#venueList li * {
+  color: inherit;
+  font-size: 17px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 480px;
+}
+
+#venueForm input {
+  padding: 13px;
+}
+
+.btn {
+  margin-top: 3%;
+  padding-right: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #000000;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn:hover {
+  color: #ffae00;
+}
+
+#addBtn {
+  padding: 15px;
+  font-weight: bold;
+  color: #000000;
+  background-color: #ffffff;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#addBtn:hover {
+  background-color: #ffae00;
+}
+
+.venueBtns {
+  font-weight: bold;
+  padding: 5px;
+  margin-top: 15px;
+  background-color: #dcd0ba;
+  border: none;
+  cursor: pointer;
+}
+
+.editForm input {
+  padding: 10px;
+  border: none;
+}
+
 /* Footer */
 footer {
-color: black;
-    color: rgb(0, 0, 0);
-    text-align: left;
-    padding: 15px 0;
-    width: 100%;
-    bottom: 0;
-    margin: 0%;
+  color: black;
+  color: rgb(0, 0, 0);
+  text-align: left;
+  padding: 15px 0;
+  width: 100%;
+  bottom: 0;
+  margin: 0%;
 }
 .site-footer {
   background: #000000;
@@ -140,4 +232,3 @@ color: black;
 .site-footer a:hover {
   color: white;
 }
-

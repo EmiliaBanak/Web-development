@@ -3,7 +3,7 @@ if (!localStorage.getItem("visited")) {
   localStorage.setItem("visited", "yes");
 }
 
-fetch("http://localhost:3000/venues")
+/*fetch("http://localhost:3000/venues")
   .then((response) => {
     if (!response.ok) {
       throw new Error("Network response was not OK");
@@ -20,3 +20,109 @@ fetch("http://localhost:3000/venues")
       list.appendChild(li);
     });
   });
+  */
+
+let venues = [
+  {
+    name: "Åhlens",
+    url: "ahlens.se/varuhus/jonkoping?utm_source=google&utm_medium=organic&utm_campaign=business_profile&utm_content=website_link",
+    district: "Öster",
+  },
+  {
+    name: "Gant",
+    url: "gant.se/stores?lat=57.78261370000001&long=14.1617876&postalCode=j%C3%B6nk%C3%B6ping&radius=10.0",
+    district: "Atollen",
+  },
+  {
+    name: "Dinos kemtvätt",
+    url: "dinos.nu",
+    district: "Väster",
+  },
+];
+
+//Render venues
+function renderVenues(list = venues) {
+  const container = document.getElementById("venueList");
+  container.innerHTML = "";
+  list.forEach((venue, index) => {
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+      <h4>${venue.name}</h4>
+      <p>${venue.district}</p>
+      <a href="${venue.url}" target="_blank">Visit website</a><br>
+      <button class="venueBtns" id="deleteBtn">DELETE</button>
+      <button class="venueBtns" id="editBtn">EDIT</button>
+    `;
+
+    //DELETE
+    li.querySelector("#deleteBtn").addEventListener("click", () => {
+      venues.splice(index, 1);
+      renderVenues();
+    });
+
+    //EDIT
+    li.querySelector("#editBtn").addEventListener("click", () => {
+      li.innerHTML = `
+      <form class="editForm">
+      <input type="text" value="${venue.name}" class="editName"/>
+      <input type="text" value="${venue.url}" class="editURL"/>
+      <input type="text" value="${venue.district}" class="editDistrict"/>
+      </form>
+      <button class="venueBtns" id="saveBtn">SAVE</button>
+      <button class="venueBtns" id="cancelBtn">CANCEL</button>
+      `;
+
+      //SAVE EDIT
+      li.querySelector("#saveBtn").addEventListener("click", () => {
+        venue.name = li.querySelector(".editName").value;
+        venue.url = li.querySelector(".editURL").value;
+        venue.district = li.querySelector(".editDistrict").value;
+        renderVenues();
+      });
+
+      //CANCEL EDIT
+      li.querySelector("#cancelBtn").addEventListener("click", () => {
+        renderVenues();
+      });
+    });
+
+    container.appendChild(li);
+  });
+}
+
+//Sort venues by name
+document.getElementById("sortName").addEventListener("click", () => {
+  venues.sort((a, b) => a.name.localeCompare(b.name));
+  renderVenues();
+});
+
+//Sort venues by district
+document.getElementById("sortDistrict").addEventListener("click", () => {
+  venues.sort((a, b) => a.district.localeCompare(b.district, "sv"));
+  renderVenues();
+});
+
+//Add a new venue
+document
+  .getElementById("venueForm")
+  .addEventListener("submit", function (submit) {
+    submit.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const URL = document.getElementById("URL").value;
+    const district = document.getElementById("district").value;
+
+    const newVenue = {
+      name: name,
+      url: URL,
+      district: district,
+    };
+
+    venues.push(newVenue);
+
+    this.reset();
+    renderVenues();
+  });
+
+renderVenues();
