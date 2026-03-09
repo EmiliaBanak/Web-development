@@ -1,27 +1,25 @@
-//importing libraries
 const path = require("path");
 const express = require("express");
-const cors = require("cors");
 const client = require("./WebDev/backend/db");
-// express server
+const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
 const PORT = 3000;
-// this is for frontend static files like images
 app.use(express.static(path.join(__dirname, "public")));
+
 
 //-----VENUES-------------------
 const { Client } = require("pg");
-//----environmental variables added, docker connected----
+
 const client = new Client({
-  host: process.env.DB_HOST || "db",
-  port: process.env.DB_PORT || 5432,
-  user: process.env.DB_USER || "admin",
-  password: process.env.DB_PASSWORD || "12345",
-  database: process.env.DB_NAME || "venues",
+  host: "localhost",
+  port: 5432,
+  user: "admin",
+  password: "12345",
+  database: "venues",
 });
-//connecting with database
+
 // The code, lines:12-32, is copied and modified according to project from Patric Riehmann university slides 'lc_database_primer.pdf'
 async function connectDB() {
   try {
@@ -32,12 +30,15 @@ async function connectDB() {
   }
 }
 connectDB();
-//api endpoint
+
 app.get("/venues", async (req, res) => {
   try {
     const dbres = await client.query("SELECT * FROM stores;");
     console.log("Stores:", dbres.rows);
     res.json(dbres.rows);
+    venues = await client.query("SELECT * FROM stores;");
+    // console.log("Stores:", dbres.rows);
+    res.json(venues.rows);
   } catch (err) {
     console.error("Error selecting records", err.stack);
   }
