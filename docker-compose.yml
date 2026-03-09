@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: api-venues
     ports:
-      - "8080:80"
+      - "3000:3000"
     environment:
       - DB_HOST=db
       - DB_PORT=5432
@@ -25,7 +25,7 @@ services:
       dockerfile: Dockerfile
     container_name: web-venues
     ports:
-      - "3000:3000"
+      - "8080:80"
     networks:
       - jkpg-network
 
