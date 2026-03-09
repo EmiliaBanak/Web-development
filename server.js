@@ -2,6 +2,7 @@
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
+const client = require("./WebDev/backend/db");
 // express server
 const app = express();
 app.use(cors());
