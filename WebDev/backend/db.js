@@ -7,8 +7,9 @@ const client = new Client({
   password: "12345",
   database: "venues",
 });
+//---------DATABASE CONNECTION----------
 
-// The code, lines:12-32, is copied and modified according to project from Patric Riehmann university slides 'lc_database_primer.pdf'
+// The code, lines:12-20 and 720-730, is copied and modified according to project from Patric Riehmann university slides 'lc_database_primer.pdf'
 async function connectDB() {
   try {
     await client.connect();
@@ -18,19 +19,8 @@ async function connectDB() {
   }
 }
 connectDB();
-/*
-function insertRecord(insertValues) {
-  const insertQuery = `
-        INSERT INTO stores (name, url, district) 
-        VALUES ($1, $2, $3) RETURNING *;
-    `;
 
-  return client
-    .query(insertQuery, insertValues)
-    .then((res) => console.log("Inserted record:", res.rows[0].name))
-    .catch((err) => console.error("Error inserting record", err.stack));
-}
-*/
+//------ ARRAY OF VENUES--------
 const venues = [
   {
     name: "Åhlens",
@@ -728,6 +718,22 @@ const venues = [
     district: "Öster",
   },
 ];
+
+//------ IMPORTING VENUES TO THE DATABASE--------
+/*
+function insertRecord(insertValues) {
+  const insertQuery = `
+        INSERT INTO stores (name, url, district) 
+        VALUES ($1, $2, $3) RETURNING *;
+    `;
+
+  return client
+    .query(insertQuery, insertValues)
+    .then((res) => console.log("Inserted record:", res.rows[0].name))
+    .catch((err) => console.error("Error inserting record", err.stack));
+}
+*/
+
 /*
 async function importData() {
   for (const venue of venues) {
@@ -738,4 +744,7 @@ async function importData() {
 
 importData();
 */
-//module.exports = Client;
+
+//Adapting Model Controler architecture learned from: https://medium.com/@jeremyalvax/fastapi-backend-architecture-model-controller-service-44e920567699 and https://www.sitepoint.com/understanding-module-exports-exports-node-js/
+
+module.exports = client;
