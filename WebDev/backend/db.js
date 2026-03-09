@@ -18,7 +18,7 @@ async function connectDB() {
   }
 }
 connectDB();
-
+/*
 function insertRecord(insertValues) {
   const insertQuery = `
         INSERT INTO stores (name, url, district) 
@@ -30,7 +30,7 @@ function insertRecord(insertValues) {
     .then((res) => console.log("Inserted record:", res.rows[0].name))
     .catch((err) => console.error("Error inserting record", err.stack));
 }
-
+*/
 const venues = [
   {
     name: "Åhlens",
@@ -728,7 +728,7 @@ const venues = [
     district: "Öster",
   },
 ];
-
+/*
 async function importData() {
   for (const venue of venues) {
     const getData = [venue.name, venue.url, venue.district];
@@ -737,5 +737,5 @@ async function importData() {
 }
 
 importData();
-
+*/
 //module.exports = Client;

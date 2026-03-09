@@ -4,33 +4,27 @@ if (!localStorage.getItem("visited")) {
 }
 
 let venues = [];
-
-fetch("http://localhost:3000/venues")
+/*
+fetch("http://localhost:3000/")
   .then((response) => response.json())
   .then((data) => {
     venues = data;
     renderVenues();
-  })
-  .catch((error) => console.log("Error:", error));
+  });*/
+//.catch((error) => console.log("Error:", error));
 
-/*fetch("http://localhost:3000/venues")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not OK");
-    }
-    return response.json();
-  })
+fetch("http://localhost:3000/venues")
+  .then((response) => response.json())
   .then((data) => {
-    console.log("GET response data:", data);
-    const list = document.getElementById("shopsList");
+    const list = document.getElementById("venueList");
 
-    data.forEach((country) => {
+    data.forEach((shop) => {
       const li = document.createElement("li");
-      li.textContent = country.name;
+      li.textContent = shop.name + " - " + shop.district;
       list.appendChild(li);
     });
-  });
-  */
+  })
+  .catch((error) => console.log(error));
 
 //Render venues
 function renderVenues(list = venues) {
