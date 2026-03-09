@@ -82,26 +82,28 @@ p {
 /*tiles layer*/
 .tiles {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 50px;
-  margin: 5%;
+  margin: 2%;
 }
 
 .tile {
   background: #ffffff;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 2 / 1.5;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   text-align: center;
-  border: 2px solid #000000;
+  border-right: 3px solid #000000;
   size: 40px;
   text-transform: uppercase;
 }
 .tile:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0);
+  background-color: rgb(147, 127, 154);
+  color: white;
+
 }
 .block {
   background-color: black;
@@ -112,11 +114,10 @@ p {
   text-align: center;
 }
 .socials {
-  background-color: rgb(7, 7, 7);
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   padding: 30px 20px;
   max-width: 100%;
-  margin: 20px auto;
   text-align: center;
 }
 
@@ -207,28 +208,24 @@ form {
 
 /* Footer */
 footer {
-  color: black;
-  color: rgb(0, 0, 0);
   text-align: left;
   padding: 15px 0;
   width: 100%;
   bottom: 0;
   margin: 0%;
+  color: #000000;
 }
 .site-footer {
-  background: #000000;
-  color: #ddd;
+  background: #ffffff;
   text-align: center;
   padding: 30px 20px;
-  font-size: 14px;
+  font-size: 16px;
+  color: #000000;
 }
-
-.site-footer a {
-  color: #ddd;
-  text-decoration: none;
-  margin: 0 5px;
+.footertext{
+  color: #000000;
 }
 
 .site-footer a:hover {
-  color: white;
+  color: rgb(159, 202, 250);
 }
