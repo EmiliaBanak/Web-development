@@ -4,15 +4,16 @@ if (!localStorage.getItem("visited")) {
 }
 
 let venues = [];
-/*
-fetch("http://localhost:3000/")
+
+fetch("http://localhost:3000/venues")
   .then((response) => response.json())
   .then((data) => {
     venues = data;
     renderVenues();
-  });*/
-//.catch((error) => console.log("Error:", error));
+  })
+  .catch((error) => console.log("Error:", error));
 
+/*
 fetch("http://localhost:3000/venues")
   .then((response) => response.json())
   .then((data) => {
@@ -25,6 +26,7 @@ fetch("http://localhost:3000/venues")
     });
   })
   .catch((error) => console.log(error));
+  */
 
 //Render venues
 function renderVenues(list = venues) {
@@ -111,4 +113,4 @@ document
     renderVenues();
   });
 
-renderVenues();
+//renderVenues();
