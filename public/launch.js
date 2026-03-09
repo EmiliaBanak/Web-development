@@ -31,7 +31,9 @@ fetch("http://localhost:3000/venues")
 //Render venues
 function renderVenues(list = venues) {
   const container = document.getElementById("venueList");
+  if (!container) return;
   container.innerHTML = "";
+
   list.forEach((venue, index) => {
     const li = document.createElement("li");
 
@@ -43,38 +45,54 @@ function renderVenues(list = venues) {
       <button class="venueBtns" id="editBtn">EDIT</button>
     `;
 
-    //DELETE
+    // DELETE
     li.querySelector("#deleteBtn").addEventListener("click", () => {
-      venues.splice(index, 1);
-      renderVenues();
-    });
-
-    //EDIT
-    li.querySelector("#editBtn").addEventListener("click", () => {
-      li.innerHTML = `
-      <form class="editForm">
-      <input type="text" value="${venue.name}" class="editName"/>
-      <input type="text" value="${venue.url}" class="editURL"/>
-      <input type="text" value="${venue.district}" class="editDistrict"/>
-      </form>
-      <button class="venueBtns" id="saveBtn">SAVE</button>
-      <button class="venueBtns" id="cancelBtn">CANCEL</button>
-      `;
-
-      //SAVE EDIT
-      li.querySelector("#saveBtn").addEventListener("click", () => {
-        venue.name = li.querySelector(".editName").value;
-        venue.url = li.querySelector(".editURL").value;
-        venue.district = li.querySelector(".editDistrict").value;
+      fetch(`http://localhost:3000/venues/${venue.id}`, {
+        method: "DELETE",
+      }).then(() => {
+        venues = venues.filter((v) => v.id !== venue.id);
         renderVenues();
       });
+    });
 
-      //CANCEL EDIT
+    // EDIT
+    li.querySelector("#editBtn").addEventListener("click", () => {
+      li.innerHTML = `
+        <form class="editForm">
+          <input type="text" value="${venue.name}" class="editName"/>
+          <input type="text" value="${venue.url}" class="editURL"/>
+          <input type="text" value="${venue.district}" class="editDistrict"/>
+        </form>
+        <button class="venueBtns" id="saveBtn">SAVE</button>
+        <button class="venueBtns" id="cancelBtn">CANCEL</button>
+      `;
+
+      // SAVE EDIT
+      li.querySelector("#saveBtn").addEventListener("click", () => {
+        const updatedVenue = {
+          name: li.querySelector(".editName").value,
+          url: li.querySelector(".editURL").value,
+          district: li.querySelector(".editDistrict").value,
+        };
+
+        fetch(`http://localhost:3000/venues/${venue.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedVenue),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const index = venues.findIndex((v) => v.id === venue.id);
+            venues[index] = data;
+            renderVenues();
+          });
+      });
+
+      // CANCEL EDIT
       li.querySelector("#cancelBtn").addEventListener("click", () => {
         renderVenues();
       });
     });
-
     container.appendChild(li);
   });
 }
@@ -105,20 +123,24 @@ document
   .addEventListener("submit", function (submit) {
     submit.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const URL = document.getElementById("URL").value;
-    const district = document.getElementById("district").value;
-
     const newVenue = {
-      name: name,
-      url: URL,
-      district: district,
+      name: document.getElementById("name").value,
+      url: document.getElementById("URL").value,
+      district: document.getElementById("district").value,
     };
 
-    venues.push(newVenue);
-
-    this.reset();
-    renderVenues();
+    //POST
+    fetch("http://localhost:3000/venues", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newVenue),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        venues.push(data);
+        renderVenues();
+        this.reset();
+      });
   });
 
 //renderVenues();
