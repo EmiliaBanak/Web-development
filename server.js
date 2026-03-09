@@ -1,10 +1,12 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.json());
 const PORT = 3000;
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+
 
 //-----VENUES-------------------
 const { Client } = require("pg");
