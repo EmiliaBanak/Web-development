@@ -80,14 +80,22 @@ function renderVenues(list = venues) {
 }
 
 //Sort venues by name
+//The following website was used as inspiration to create the following logic
+//https://www.scaler.com/topics/javascript-alphabetical-sort/
 document.getElementById("sortName").addEventListener("click", () => {
   venues.sort((a, b) => a.name.localeCompare(b.name));
   renderVenues();
 });
 
 //Sort venues by district
+//The following website was used as inspiration to create the following logic
+//https://www.scaler.com/topics/javascript-alphabetical-sort/
 document.getElementById("sortDistrict").addEventListener("click", () => {
-  venues.sort((a, b) => a.district.localeCompare(b.district, "sv"));
+  venues.sort((a, b) => {
+    const districtA = a.district || "";
+    const districtB = b.district || "";
+    return districtA.localeCompare(districtB, "sv");
+  });
   renderVenues();
 });
 
