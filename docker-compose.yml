@@ -1,0 +1,51 @@
+name: jkpg-city
+# code adapten based on previous project 
+services:
+  api-venues:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: api-venues
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=admin
+      - DB_PASSWORD=12345
+      - DB_NAME=venues
+    depends_on:
+      - db
+    networks:
+      - jkpg-network
+
+  web-venues:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: web-venues
+    ports:
+      - "8080:80"
+    networks:
+      - jkpg-network
+
+  db:
+    image: postgres:15
+    container_name: venues-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: venues
+    ports:
+      - "5432:5432"
+    volumes:
+      - venues_data:/var/lib/postgresql/data
+    networks:
+      - jkpg-network
+
+networks:
+  jkpg-network:
+    driver: bridge
+
+volumes:
+  venues_data:
