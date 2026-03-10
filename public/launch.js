@@ -1,3 +1,8 @@
+
+  /*This file handles the frontend logic for the venue management webpage.
+  It communicates with the backend REST API to perform CRUD operations
+  (Create, Read, Update, Delete) on venues stored in the database.*/
+
 if (!localStorage.getItem("visited")) {
   alert("Welcome to Jönköping City!");
   localStorage.setItem("visited", "yes");
